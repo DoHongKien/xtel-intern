@@ -1,28 +1,27 @@
-import java.sql.SQLOutput;
 import java.util.Scanner;
 
 public class QuickSort {
 
     public static int[] quickSort(int[] numbers, int l, int r) {
-        int p = numbers[(l + r) / 2];
+        int p = numbers[(l + r) / 2]; // Lấy giá trị của trục làm mốc
         int i = l, j = r;
 
-        while (i < j) {
+        while (i < j) {// Nếu left lớn hơn hoặc bằng right thì dừng while
 
-            while (numbers[i] < p) {
+            while (numbers[i] < p) { // Nếu các giá trị nằm bên trái mà nhỏ hơn giá trị trục thì tăng i
                 i++;
             }
 
-            while (numbers[j] > p) {
+            while (numbers[j] > p) { // Nếu các giá trị nằm bên phải mà lớn hơn giá trị trục thì trừ j
                 j--;
             }
 
-            if (i <= j) {
+            if (i <= j) { //Nếu giá trị hiện tại của index i mà nhỏ hơn hoặc bằng giá trị hiện tại của index j thì đổi chỗ chúng cho nhau
                 int temp = numbers[i];
                 numbers[i] = numbers[j];
                 numbers[j] = temp;
-                i++;
-                j--;
+                i++;//Tăng index bên trái lên 1
+                j--;//Giảm index bên phải đi 1
             }
 
             if (i < r) {
