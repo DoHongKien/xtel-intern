@@ -2,6 +2,7 @@ package com.example.demo.service;
 
 import com.example.demo.entity.Animal;
 import com.example.demo.repository.AnimalRepository;
+import com.example.demo.util.OracleConnection;
 import lombok.RequiredArgsConstructor;
 import oracle.jdbc.OracleCallableStatement;
 import oracle.jdbc.OracleTypes;
@@ -16,6 +17,7 @@ import java.util.List;
 public class AnimalServiceImpl implements AnimalService {
 
     private final AnimalRepository animalRepository;
+    private final OracleConnection oracleConnection;
 
     @Override
     public List<Animal> findAllAnimal() {
@@ -34,16 +36,38 @@ public class AnimalServiceImpl implements AnimalService {
     }
 
     @Override
+    public Animal callProcedureFindAnimalById(Integer id) {
+        try {
+            Connection connection = oracleConnection.getConnection();
+            CallableStatement callableStatement = connection.prepareCall("call FIND_ANIMAL_BY_ID(?,?)");
+            callableStatement.setInt(1, id);
+            callableStatement.registerOutParameter(2, OracleTypes.CURSOR);
+            callableStatement.execute();
+
+            ResultSet resultSet = ((OracleCallableStatement) callableStatement).getCursor(2);
+
+            if (resultSet.next()) {
+                Integer animalId = resultSet.getInt("id");
+                String name = resultSet.getString("name");
+                Double weight = resultSet.getDouble("weight");
+                Double height = resultSet.getDouble("height");
+                return new Animal(animalId, name, weight, height);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
     public List<Animal> callProcedureAnimal() {
-        String jdbcUrl = "jdbc:oracle:thin:@localhost:1521:orcl";
-        String username = "kien03";
-        String password = "2003";
         List<Animal> animals = new ArrayList<>();
 
-        try (Connection connection = DriverManager.getConnection(jdbcUrl, username, password)) {
+        try (Connection connection = oracleConnection.getConnection()) {
 
             // Tạo CallableStatement
-            try (CallableStatement callableStatement = connection.prepareCall("{call findAllAnimal(?)}")) {
+            try (CallableStatement callableStatement = connection.prepareCall("call FIND_ALL_ANIMAL(?)")) {
                 // Đăng ký tham số đầu ra
                 callableStatement.registerOutParameter(1, OracleTypes.CURSOR);
 
@@ -71,29 +95,22 @@ public class AnimalServiceImpl implements AnimalService {
 
     @Override
     public String callProcedureInsert(Animal animal) {
-        String url = "jdbc:oracle:thin:@localhost:1521:orcl";
-        String user = "kien03";
-        String password = "2003";
-
-        String name = animal.getName();
-        double weight = animal.getWeight();
-        double height = animal.getHeight();
 
         try {
             // Kết nối đến cơ sở dữ liệu
-            Connection connection = DriverManager.getConnection(url, user, password);
+            Connection connection = oracleConnection.getConnection();
 
             // Chuẩn bị câu lệnh gọi thủ tục
-            String sql = "{call insertAnimal(?, ?, ?, ?)}";
+            String sql = "call INSERT_ANIMAL(?, ?, ?, ?)";
             CallableStatement callableStatement = connection.prepareCall(sql);
 
             // Đặt giá trị cho các tham số đầu vào
-            callableStatement.setString(1, name);
-            callableStatement.setDouble(2, weight);
-            callableStatement.setDouble(3, height);
+            callableStatement.setString(1, animal.getName());
+            callableStatement.setDouble(2, animal.getWeight());
+            callableStatement.setDouble(3, animal.getHeight());
 
             // Đặt tham số đầu ra
-            callableStatement.registerOutParameter(4, java.sql.Types.NUMERIC);
+            callableStatement.registerOutParameter(4, OracleTypes.NUMERIC);
 
             // Thực thi thủ tục
             callableStatement.execute();
@@ -115,5 +132,26 @@ public class AnimalServiceImpl implements AnimalService {
             e.printStackTrace();
         }
         return "Thực hiện thất bại.";
+    }
+
+    @Override
+    public String callProcedureDeleteAnimalById(Integer id) {
+        try {
+            Connection connection = oracleConnection.getConnection();
+            CallableStatement callableStatement = connection.prepareCall("call DELETE_ANIMAL_BY_ID(?,?)");
+            callableStatement.setInt(1, id);
+            callableStatement.registerOutParameter(2, OracleTypes.NUMBER);
+
+            callableStatement.execute();
+            int result = callableStatement.getInt(2);
+            if(result == 1) {
+                return "Xóa thành công!";
+            } else {
+                return "Xóa thất bại";
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

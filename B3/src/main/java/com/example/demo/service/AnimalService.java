@@ -12,7 +12,11 @@ public interface AnimalService {
 
     Animal saveAnimal(Animal animal);
 
+    Animal callProcedureFindAnimalById(Integer id);
+
     List<Animal> callProcedureAnimal();
 
     String callProcedureInsert(Animal animal);
+
+    String callProcedureDeleteAnimalById(Integer id);
 }

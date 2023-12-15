@@ -28,12 +28,17 @@ public class AnimalController {
 
     @GetMapping("/get/{id}")
     public ResponseEntity<?> findPlayer(@PathVariable("id") Integer id) {
-        return ResponseEntity.ok(animalService.getAnimal(id));
+        return ResponseEntity.ok(animalService.callProcedureFindAnimalById(id));
     }
 
     // Api save animal from procedure
     @PostMapping("/save")
     public ResponseEntity<?> savePlayer(@RequestBody Animal animal) {
         return ResponseEntity.ok(animalService.callProcedureInsert(animal));
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<?> deleteAnimal(@PathVariable("id") Integer animalId) {
+        return ResponseEntity.ok(animalService.callProcedureDeleteAnimalById(animalId));
     }
 }
