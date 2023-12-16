@@ -1,9 +1,14 @@
 package kien.exercise;
 
+import java.io.*;
+import java.util.Arrays;
+import java.util.Random;
 import java.util.Scanner;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class Main {
 
+    // Nhập số đến khi đúng số được chỉ định
     public static void baiTapA() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Chọn số cần nhập");
@@ -19,6 +24,7 @@ public class Main {
         }
     }
 
+    // Tính tiền điện
     public static void baiTapB() {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Vui lòng nhập số điện đã dùng: ");
@@ -37,5 +43,70 @@ public class Main {
             soTienCanTra = (100 * 1000) + (49 * 1500) + ((soDienDaDung - 149) * 2000);
         }
         System.out.println("Số tiền cân trả là: " + soTienCanTra + "đ");
+    }
+
+    public static void main(String[] args) {
+        sortInFile();
+    }
+
+    // Sắp xếp mảng 1 chiều từ file input.txt
+    public static void sortInFile() {
+        try {
+            BufferedReader bufferedReader = new BufferedReader(new FileReader("input.txt"));
+            String readLine = bufferedReader.readLine();
+            int[] array = Arrays.stream(readLine.split("\\s+"))
+                    .mapToInt(Integer::parseInt)
+                    .toArray();
+            quickSort(array, 0, array.length - 1);
+            Arrays.stream(array).forEach(n -> System.out.print(n + " "));
+
+            bufferedReader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // Insert number into input.txt file
+    public static void insertNumberInFile() {
+        try {
+            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("input.txt"));
+            Random random = new Random();
+            for(int i = 0; i <= 1000000; i++) {
+                int randomNumber = ThreadLocalRandom.current().nextInt(1, 1000 + 1);
+                bufferedWriter.write(Integer.toString(randomNumber));
+                bufferedWriter.write(" ");
+            }
+            bufferedWriter.close();
+        }catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void quickSort(int[] numbers, int l, int r) {
+        int p = numbers[(l + r) / 2];
+        int i = l, j = r;
+
+        while(i < j) {
+            while(numbers[i] < p) {
+                i++;
+            }
+            while(numbers[j] > p) {
+                j--;
+            }
+            if(i <= j) {
+                int temp = numbers[i];
+                numbers[i] = numbers[j];
+                numbers[j] = temp;
+                i++;
+                j--;
+            }
+
+            if(i < r) {
+                quickSort(numbers, i, r);
+            }
+            if(j > l) {
+                quickSort(numbers, l, j);
+            }
+        }
     }
 }
