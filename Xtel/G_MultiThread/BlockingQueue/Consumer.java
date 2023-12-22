@@ -10,7 +10,7 @@ public class Consumer extends Thread{
     private final Logger logger = Logger.getLogger(Consumer.class.getName());
 
     // Khởi tạo BlockingQueue
-    private BlockingQueue<Student> queue;
+    private final BlockingQueue<Student> queue;
 
     public Consumer(BlockingQueue<Student> queue) {
         this.queue = queue;

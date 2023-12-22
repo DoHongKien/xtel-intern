@@ -10,7 +10,7 @@ public class Producer extends Thread {
     private final Logger logger = Logger.getLogger(Producer.class.getName());
 
     // Khai báo BlockingQueue
-    private BlockingQueue<Student> queue;
+    private final BlockingQueue<Student> queue;
 
     public Producer(BlockingQueue<Student> queue) {
         this.queue = queue;
