@@ -7,7 +7,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Main {
-    //Như ví dụ ở package BlockingQueue thì ta chỉ chạy BlockingQueue trên 1 luồng do đó sẽ khá chậm.
+    //Như ví dụ ở package BlockingQueue trong MultiThread thì ta chỉ chạy BlockingQueue trên 1 luồng do đó sẽ khá chậm.
     //Trong ví dụ này ta sẽ thiết lập cho chạy tối đa trên 10 luồng giúp việc thực hiện sẽ nhanh hơn
 
     //Tạo logger log các thông tin

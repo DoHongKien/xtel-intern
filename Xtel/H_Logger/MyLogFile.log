@@ -1,0 +1,4 @@
+Dec 25, 2023 10:09:15 AM H_Logger.DemoLogger main
+WARNING: The ArithmeticException error can occur in the DemoLogger class
+Dec 25, 2023 10:09:15 AM H_Logger.DemoLogger main
+INFO: This is info log

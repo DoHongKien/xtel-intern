@@ -71,7 +71,6 @@ public class Main {
     public static void insertNumberInFile() {
         try {
             BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("input.txt"));
-            Random random = new Random();
             for(int i = 0; i <= 1000; i++) {
                 int randomNumber = ThreadLocalRandom.current().nextInt(1, 1000 + 1);
                 bufferedWriter.write(Integer.toString(randomNumber));
