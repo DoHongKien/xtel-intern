@@ -1,0 +1,118 @@
+package K_BaiTapKhac.ForkJoinPool;
+
+import java.io.*;
+import java.util.concurrent.ForkJoinPool;
+import java.util.concurrent.RecursiveAction;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+public class QuickSortWithForkJoin extends RecursiveAction {
+
+    byte[] numbers;
+
+    int left, right;
+
+    public QuickSortWithForkJoin(byte[] array, int left, int right) {
+        this.numbers = array;
+        this.left = left;
+        this.right = right;
+    }
+
+    @Override
+    protected void compute() {
+        int i = left, j = right;
+
+        // Đặt phần tử ở giữa mảng làm trục
+        int pivot = numbers[(left + right) / 2];
+
+        while (i <= j) {
+            while (numbers[i] < pivot) {
+                i++;
+            }
+            while (numbers[j] > pivot) {
+                j--;
+            }
+
+            // Thay đổi giá trị 2 vị trí
+            if (i <= j) {
+                byte temp = numbers[i];
+                numbers[i] = numbers[j];
+                numbers[j] = temp;
+                i++;
+                j--;
+            }
+        }
+
+        QuickSortWithForkJoin leftTask = null;
+        QuickSortWithForkJoin rightTask = null;
+
+        if (i < right) {
+            leftTask = new QuickSortWithForkJoin(numbers, i, right);
+        }
+
+        if (j > left) {
+            rightTask = new QuickSortWithForkJoin(numbers, left, j);
+        }
+
+        if (leftTask != null) {
+            leftTask.compute();
+        }
+
+        if (rightTask != null) {
+            rightTask.compute();
+        }
+    }
+
+    public static void main(String[] args) throws IOException {
+
+        // Lấy dữ liệu trong file để sắp xếp
+        byte[] bytes = readFile();
+
+        // Khởi tạo ForkJoinPool thực hiện chia nhỏ task để làm việc
+        ForkJoinPool forkJoinPool = new ForkJoinPool();
+
+
+        // Khởi tạo hàm sắp xếp
+        QuickSortWithForkJoin forkJoin = new QuickSortWithForkJoin(bytes, 0, bytes.length - 1);
+
+        // Thực hiện việc chia nhỏ task
+        forkJoinPool.invoke(forkJoin);
+
+        for (byte b : bytes) {
+            System.out.print(b + " ");
+        }
+    }
+
+    private static byte[] readFile() {
+        Logger logger = Logger.getLogger("read-file");
+        FileInputStream fileInputStream = null;
+        byte[] bytes = new byte[0];
+        try {
+            // Tạo FileInputStream đọc file từ input.txt
+            fileInputStream = new FileInputStream("input.txt");
+
+            // Lấy ra tất cả dữ liệu lưu vào mảng byte
+            bytes = fileInputStream.readAllBytes();
+
+        } catch (IOException e) {
+            if(logger.isLoggable(Level.WARNING)) {
+                logger.warning("The IOException error can occur when read file in the readFile function");
+            }
+
+        } finally {
+            // Kiểm tra xem FileInputStream còn hoạt động hay không
+            if(fileInputStream != null) {
+                try {
+                    // Đóng FileInputStream
+                    fileInputStream.close();
+                } catch (IOException e) {
+                    if(logger.isLoggable(Level.WARNING)) {
+                        logger.warning("The IOException error can occur when close FileInputStream");
+                    }
+                }
+            }
+
+        }
+        return bytes;
+    }
+}

@@ -46,8 +46,13 @@ public class Main {
     }
 
     public static void main(String[] args) {
-//        insertNumberInFile();
-        baiTapB();
+//        long start = System.currentTimeMillis();
+//        sortInFile();
+//        long end = System.currentTimeMillis();
+//        System.out.println();
+//        System.out.println("Time execute: " + (end - start));
+
+        insertNumberInFile();
     }
 
     // Sắp xếp mảng 1 chiều từ file input.txt
@@ -70,13 +75,15 @@ public class Main {
     // Insert number into input.txt file
     public static void insertNumberInFile() {
         try {
-            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("input.txt"));
-            for(int i = 0; i <= 1000; i++) {
-                int randomNumber = ThreadLocalRandom.current().nextInt(1, 1000 + 1);
-                bufferedWriter.write(Integer.toString(randomNumber));
-                bufferedWriter.write(" ");
+            OutputStreamWriter outputStream = new OutputStreamWriter(new FileOutputStream("input.txt"));
+            Random random = new Random();
+
+            int i = 0;
+            while(i < 1_000_000) {
+                outputStream.write(random.nextInt(1, 99));
+                i++;
             }
-            bufferedWriter.close();
+            outputStream.close();
         }catch (IOException e) {
             e.printStackTrace();
         }
