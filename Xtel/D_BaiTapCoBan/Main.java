@@ -58,15 +58,14 @@ public class Main {
     // Sắp xếp mảng 1 chiều từ file input.txt
     public static void sortInFile() {
         try {
-            BufferedReader bufferedReader = new BufferedReader(new FileReader("input.txt"));
-            String readLine = bufferedReader.readLine();
-            int[] array = Arrays.stream(readLine.split("\\s+"))
-                    .mapToInt(Integer::parseInt)
-                    .toArray();
-            quickSort(array, 0, array.length - 1);
-            Arrays.stream(array).forEach(n -> System.out.print(n + " "));
+            FileInputStream inputStream = new FileInputStream("input.txt");
+            byte[] bytes = inputStream.readAllBytes();
+            quickSort(bytes, 0, bytes.length - 1);
+            for (byte b : bytes) {
+                System.out.print(b + " ");
+            }
 
-            bufferedReader.close();
+            inputStream.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -79,7 +78,7 @@ public class Main {
             Random random = new Random();
 
             int i = 0;
-            while(i < 1_000_000) {
+            while(i < 1_000_000_000) {
                 outputStream.write(random.nextInt(1, 99));
                 i++;
             }
@@ -89,7 +88,7 @@ public class Main {
         }
     }
 
-    public static void quickSort(int[] numbers, int l, int r) {
+    public static void quickSort(byte[] numbers, int l, int r) {
         int p = numbers[(l + r) / 2];
         int i = l, j = r;
 
@@ -101,7 +100,7 @@ public class Main {
                 j--;
             }
             if(i <= j) {
-                int temp = numbers[i];
+                byte temp = numbers[i];
                 numbers[i] = numbers[j];
                 numbers[j] = temp;
                 i++;

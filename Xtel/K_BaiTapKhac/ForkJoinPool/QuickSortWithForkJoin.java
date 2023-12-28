@@ -54,33 +54,37 @@ public class QuickSortWithForkJoin extends RecursiveAction {
             rightTask = new QuickSortWithForkJoin(numbers, left, j);
         }
 
+        // Kiểm tra nếu leftTask được khởi tạo trong điều kiện if (i < right) thì gọi lại lệnh compute
         if (leftTask != null) {
             leftTask.compute();
         }
 
+        // Kiểm tra nếu rightTask được khởi tạo trong điều kiện if (i < right) thì gọi lại lệnh compute
         if (rightTask != null) {
             rightTask.compute();
         }
     }
 
     public static void main(String[] args) throws IOException {
-
         // Lấy dữ liệu trong file để sắp xếp
         byte[] bytes = readFile();
 
+        long start = System.nanoTime();
+
         // Khởi tạo ForkJoinPool thực hiện chia nhỏ task để làm việc
         ForkJoinPool forkJoinPool = new ForkJoinPool();
-
 
         // Khởi tạo hàm sắp xếp
         QuickSortWithForkJoin forkJoin = new QuickSortWithForkJoin(bytes, 0, bytes.length - 1);
 
         // Thực hiện việc chia nhỏ task
         forkJoinPool.invoke(forkJoin);
+        long end = System.nanoTime();
 
-        for (byte b : bytes) {
-            System.out.print(b + " ");
-        }
+        // Thời gian trả về khi sắp xếp hoàn thành
+        System.out.println("Time execute: " + ((end - start) / 1_000_000_000) + "s");
+
+        // Thực hiện sắp xếp 1 tỷ số thời gian nhanh nhất đạt được là 70s trên laptop 8gb ram
     }
 
     private static byte[] readFile() {
