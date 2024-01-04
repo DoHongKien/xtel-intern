@@ -45,7 +45,7 @@ public class JwtFilter extends OncePerRequestFilter {
                 }
             }
         }
-        log.info("Authentication is unauthenticated");
+        log.info("Authentication is unauthenticated or permissions are valid");
         filterChain.doFilter(request, response);
     }
 }

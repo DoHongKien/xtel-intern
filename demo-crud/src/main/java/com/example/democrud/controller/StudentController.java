@@ -2,6 +2,7 @@ package com.example.democrud.controller;
 
 import com.example.democrud.entity.Student;
 import com.example.democrud.service.StudentService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -24,7 +25,7 @@ public class StudentController {
     }
 
     @PostMapping("/save")
-    public ResponseEntity<?> saveStudent(@RequestBody Student student) {
+    public ResponseEntity<?> saveStudent(@RequestBody @Valid Student student) {
         return ResponseEntity.ok(studentService.saveStudent(student));
     }
 

@@ -6,6 +6,7 @@ import com.exception.handling.exception.ConflictException;
 import com.exception.handling.exception.IdNotFoundException;
 import com.exception.handling.exception.UsernameNotFoundException;
 import com.exception.handling.service.UserService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
