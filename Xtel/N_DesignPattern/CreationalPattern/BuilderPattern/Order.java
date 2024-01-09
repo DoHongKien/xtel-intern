@@ -2,10 +2,10 @@ package N_DesignPattern.CreationalPattern.BuilderPattern;
 
 public class Order {
 
-    private LoaiBanhMy banhMy;
-    private LoaiDatHang datHang;
-    private LoaiHaiSan haiSan;
-    private LoaiRau rau;
+    private final LoaiBanhMy banhMy;
+    private final LoaiDatHang datHang;
+    private final LoaiHaiSan haiSan;
+    private final LoaiRau rau;
 
     public Order(LoaiDatHang datHang, LoaiBanhMy banhMy, LoaiHaiSan haiSan, LoaiRau rau) {
         super();
@@ -13,22 +13,6 @@ public class Order {
         this.datHang = datHang;
         this.haiSan = haiSan;
         this.rau = rau;
-    }
-
-    public LoaiBanhMy getBanhMy() {
-        return banhMy;
-    }
-
-    public LoaiDatHang getDatHang() {
-        return datHang;
-    }
-
-    public LoaiHaiSan getHaiSan() {
-        return haiSan;
-    }
-
-    public LoaiRau getRau() {
-        return rau;
     }
 
     @Override
