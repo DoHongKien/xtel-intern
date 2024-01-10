@@ -35,6 +35,11 @@ public class EmployeeController {
         return ResponseEntity.ok(employeeService.saveEmployee(employee));
     }
 
+    @PutMapping("/update/{employeeId}")
+    public ResponseEntity<?> updateEmployee(@PathVariable Long employeeId, @RequestBody EmployeeDto employeeDto) throws IdNotFoundException {
+        return ResponseEntity.ok(employeeService.updateEmployee(employeeDto, employeeId));
+    }
+
     @DeleteMapping("/{employeeId}")
     public ResponseEntity<String> deleteEmployeeById(@PathVariable Long employeeId) throws IdNotFoundException {
         employeeService.deleteEmployeeById(employeeId);

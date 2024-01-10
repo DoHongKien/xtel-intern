@@ -40,6 +40,20 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
+    public Employee updateEmployee(EmployeeDto employee, Long employeeId) throws IdNotFoundException {
+        Employee employeeInDatabase = employeeRepository.findById(employeeId)
+                .orElseThrow(() -> new IdNotFoundException("Employee has id is " + employeeId + " not found"));
+
+        if(employeeInDatabase != null) {
+            Employee saveEmployee = EmployeeMapper.convertToEmployee(employee);
+            saveEmployee.setId(employeeId);
+            saveEmployee.setCode(employeeInDatabase.getCode());
+            return employeeRepository.save(saveEmployee);
+        }
+        return null;
+    }
+
+    @Override
     public void deleteEmployeeById(Long employeeId) throws IdNotFoundException {
         Employee employee = employeeRepository.findById(employeeId)
                 .orElseThrow(() -> new IdNotFoundException("Employee has id is " + employeeId + " not found"));

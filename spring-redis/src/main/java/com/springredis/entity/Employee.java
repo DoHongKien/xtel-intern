@@ -1,18 +1,18 @@
-package com.exception.handling.entity;
+package com.springredis.entity;
 
-import com.exception.handling.listener.LogListener;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
 @Entity
-@EntityListeners(LogListener.class)
 @Table(name = "employee")
-public class Employee {
+public class Employee implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

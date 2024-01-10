@@ -15,5 +15,7 @@ public interface EmployeeService {
 
     Employee saveEmployee(EmployeeDto employee) throws ConflictException;
 
+    Employee updateEmployee(EmployeeDto employee, Long id) throws IdNotFoundException;
+
     void deleteEmployeeById(Long employeeId) throws IdNotFoundException;
 }
