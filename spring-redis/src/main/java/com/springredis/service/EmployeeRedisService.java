@@ -7,9 +7,17 @@ import java.util.List;
 
 public interface EmployeeRedisService {
 
-    void clear();
+    void clearAll();
 
-    List<Employee> getAllEmployee(int pageNumber, int pageSize) throws JsonProcessingException;
+    void clearByKey(String key);
 
-    List<Employee> saveAllEmployee(List<Employee> employees, int pageNumber, int pageSize) throws JsonProcessingException;
+    String getKey(Long employeeId);
+
+    List<Employee> getAllEmployee(int pageNumber, int pageSize);
+
+    Employee getEmployee(Long employeeId);
+
+    void saveAllEmployee(List<Employee> employees, int pageNumber, int pageSize);
+
+    void saveEmployee(Employee employee);
 }

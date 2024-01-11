@@ -1,5 +1,6 @@
 package com.springredis.entity;
 
+import com.springredis.listener.EmployeeListener;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -11,6 +12,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 @Data
 @Entity
+@EntityListeners(EmployeeListener.class)
 @Table(name = "employee")
 public class Employee implements Serializable {
 
