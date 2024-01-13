@@ -1,10 +1,14 @@
 package com.example.paymentwithmultithread.service;
 
 import com.example.paymentwithmultithread.entity.Product;
+import com.example.paymentwithmultithread.model.dto.SearchRequest;
+import org.springframework.data.domain.Page;
 
 import java.util.List;
 
 public interface ProductService {
+
+    Page<Product> searchProduct(SearchRequest request);
 
     Product findProductById(Long productId);
 

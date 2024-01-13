@@ -1,10 +1,14 @@
 package com.example.paymentwithmultithread.service.impl;
 
 import com.example.paymentwithmultithread.entity.Product;
+import com.example.paymentwithmultithread.model.dto.SearchRequest;
+import com.example.paymentwithmultithread.model.dto.SearchSpecification;
 import com.example.paymentwithmultithread.repository.ProductRepository;
 import com.example.paymentwithmultithread.service.ProductService;
 import com.example.paymentwithmultithread.service.specification.ProductSpecification;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +19,13 @@ public class ProductServiceImpl implements ProductService {
 
     @Autowired
     private ProductRepository productRepository;
+
+    @Override
+    public Page<Product> searchProduct(SearchRequest request) {
+        SearchSpecification<Product> specification = new SearchSpecification<>(request);
+        Pageable pageable = SearchSpecification.getPageable(request.getPage(), request.getSize());
+        return productRepository.findAll(specification, pageable);
+    }
 
     @Override
     public Product findProductById(Long productId) {

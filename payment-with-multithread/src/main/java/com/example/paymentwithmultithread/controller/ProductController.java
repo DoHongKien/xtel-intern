@@ -1,6 +1,7 @@
 package com.example.paymentwithmultithread.controller;
 
 import com.example.paymentwithmultithread.entity.Product;
+import com.example.paymentwithmultithread.model.dto.SearchRequest;
 import com.example.paymentwithmultithread.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -11,6 +12,11 @@ public class ProductController {
 
     @Autowired
     private ProductService productService;
+
+    @PostMapping("/search")
+    public ResponseEntity<?> searchProduct(@RequestBody SearchRequest request) {
+        return ResponseEntity.ok(productService.searchProduct(request));
+    }
 
     @GetMapping("/get-product")
     public ResponseEntity<?> findProductById(@RequestParam Long productId) {
