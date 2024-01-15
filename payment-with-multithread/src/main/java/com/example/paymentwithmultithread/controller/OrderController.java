@@ -1,5 +1,6 @@
 package com.example.paymentwithmultithread.controller;
 
+import com.example.paymentwithmultithread.exception.IdNotFoundException;
 import com.example.paymentwithmultithread.model.dto.PaymentDto;
 import com.example.paymentwithmultithread.service.OrderService;
 import lombok.RequiredArgsConstructor;
@@ -19,7 +20,7 @@ public class OrderController {
     }
 
     @PostMapping("/save")
-    public ResponseEntity<?> saveOrder(@RequestBody PaymentDto payments) throws Exception {
+    public ResponseEntity<?> saveOrder(@RequestBody PaymentDto payments) throws IdNotFoundException {
         orderService.saveOrder(payments);
         return ResponseEntity.ok("OK");
     }

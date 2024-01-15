@@ -3,6 +3,7 @@ package com.example.paymentwithmultithread.service.impl;
 import com.example.paymentwithmultithread.entity.Order;
 import com.example.paymentwithmultithread.entity.OrderDetail;
 import com.example.paymentwithmultithread.entity.Product;
+import com.example.paymentwithmultithread.exception.IdNotFoundException;
 import com.example.paymentwithmultithread.model.dto.OrderDto;
 import com.example.paymentwithmultithread.model.dto.PaymentDto;
 import com.example.paymentwithmultithread.repository.OrderDetailRepository;
@@ -10,12 +11,15 @@ import com.example.paymentwithmultithread.repository.OrderRepository;
 import com.example.paymentwithmultithread.repository.ProductRepository;
 import com.example.paymentwithmultithread.service.OrderService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class OrderServiceImpl implements OrderService {
@@ -31,32 +35,31 @@ public class OrderServiceImpl implements OrderService {
         return orderRepository.findAll();
     }
 
+    @Transactional
+    @Async
     @Override
-    public Boolean saveOrder(PaymentDto payments) throws Exception {
-
+    public synchronized void saveOrder(PaymentDto payments) throws IdNotFoundException {
+        log.info("Saving order " + payments + " with thread " + Thread.currentThread().getName());
         Order order = Order.builder()
                 .code(UUID.randomUUID().toString())
                 .build();
         Order saveOrder = orderRepository.save(order);
 
-        for(OrderDto payment: payments.getPayments()) {
-            Optional<Product> product = productRepository.findById(payment.getProductId());
-            if(product.isPresent()) {
-                OrderDetail orderDetail = getOrderDetail(product, saveOrder);
-                orderDetailRepository.save(orderDetail);
-            } else {
-                throw new Exception("Invalid");
-            }
+        for (OrderDto payment : payments.getPayments()) {
+            Product product = productRepository.findById(payment.getProductId())
+                    .orElseThrow(() -> new IdNotFoundException("Product not found with id: " + payment.getProductId()));
+
+            OrderDetail orderDetail = getOrderDetail(product, saveOrder);
+            orderDetailRepository.save(orderDetail);
         }
-        return true;
     }
 
-    private OrderDetail getOrderDetail(Optional<Product> product, Order order) {
+    private OrderDetail getOrderDetail(Product product, Order order) {
         return OrderDetail.builder()
-                .productName(product.get().getName())
-                .price(product.get().getPrice())
-                .quantity(product.get().getQuantity())
-                .product(product.get())
+                .productName(product.getName())
+                .price(product.getPrice())
+                .quantity(product.getQuantity())
+                .product(product)
                 .order(order)
                 .build();
     }
