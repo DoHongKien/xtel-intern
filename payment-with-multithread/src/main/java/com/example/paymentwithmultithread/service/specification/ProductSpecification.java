@@ -5,6 +5,8 @@ import org.springframework.data.jpa.domain.Specification;
 
 public class ProductSpecification {
 
+    private ProductSpecification() {}
+
     public static Specification<Product> hasQuantityLessThanOrEqualTo(Integer quantity) {
         return (root, query, criteriaBuilder) ->
                 criteriaBuilder.lessThanOrEqualTo(root.get("quantity"), quantity);

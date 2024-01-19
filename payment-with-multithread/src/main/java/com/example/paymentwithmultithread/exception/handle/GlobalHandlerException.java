@@ -16,14 +16,14 @@ public class GlobalHandlerException {
 
     @ExceptionHandler(IdNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    public ResponseEntity<?> handleIdNotFoundException(IdNotFoundException e) {
+    public ResponseEntity<ExceptionResponse> handleIdNotFoundException(IdNotFoundException e) {
         ExceptionResponse response = createResponseStatus(HttpStatus.NOT_FOUND, e);
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
     }
 
     @ExceptionHandler(OutOfStockException.class)
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public ResponseEntity<?> handleOutOfStockException(OutOfStockException e) {
+    public ResponseEntity<ExceptionResponse> handleOutOfStockException(OutOfStockException e) {
         ExceptionResponse response = createResponseStatus(HttpStatus.NO_CONTENT, e);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).body(response);
     }

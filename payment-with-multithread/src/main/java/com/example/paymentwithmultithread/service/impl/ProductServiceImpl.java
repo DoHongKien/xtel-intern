@@ -6,7 +6,7 @@ import com.example.paymentwithmultithread.model.dto.SearchSpecification;
 import com.example.paymentwithmultithread.repository.ProductRepository;
 import com.example.paymentwithmultithread.service.ProductService;
 import com.example.paymentwithmultithread.service.specification.ProductSpecification;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
@@ -15,10 +15,10 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class ProductServiceImpl implements ProductService {
 
-    @Autowired
-    private ProductRepository productRepository;
+    private final ProductRepository productRepository;
 
     @Override
     public Page<Product> searchProduct(SearchRequest request) {

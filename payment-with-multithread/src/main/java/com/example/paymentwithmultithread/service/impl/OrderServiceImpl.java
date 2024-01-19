@@ -18,6 +18,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.UUID;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 
 @Slf4j
 @Service
@@ -31,25 +33,29 @@ public class OrderServiceImpl implements OrderService {
     private final ProductRepository productRepository;
 
     @Override
-    public List<Order> getOrderList() {
-        return orderRepository.findAll();
+    public List<Order> getOrderList() throws ExecutionException, InterruptedException {
+        CompletableFuture<List<Order>> completableFuture = new CompletableFuture<>();
+        completableFuture.completeAsync(orderRepository::findAll);
+        return completableFuture.get();
     }
 
     @Transactional
     @Async
     @Override
-    public synchronized void saveOrder(PaymentDto payments) throws IdNotFoundException {
-        log.info("Saving order " + payments + " with thread " + Thread.currentThread().getName());
-        Order order = Order.builder()
-                .code(UUID.randomUUID().toString())
-                .build();
-        Order saveOrder = orderRepository.save(order);
+    public void saveOrder(PaymentDto payment) throws IdNotFoundException, ExecutionException, InterruptedException {
+        log.info("Saving order " + payment + " with thread " + Thread.currentThread().getName());
 
-        for (OrderDto payment : payments.getPayments()) {
-            Product product = productRepository.findById(payment.getProductId())
-                    .orElseThrow(() -> new IdNotFoundException("Product not found with id: " + payment.getProductId()));
+        CompletableFuture<Order> orderFuture = CompletableFuture.supplyAsync(() -> {
+            Order order = Order.builder()
+                    .code(UUID.randomUUID().toString())
+                    .build();
+            return orderRepository.save(order);
+        });
 
-            OrderDetail orderDetail = getOrderDetail(product, saveOrder);
+        for (OrderDto pay : payment.getPayments()) {
+            Product product = productRepository.findById(pay.getProductId())
+                    .orElseThrow(() -> new IdNotFoundException("Product not found with id: " + pay.getProductId()));
+            OrderDetail orderDetail = getOrderDetail(product, orderFuture.get());
             orderDetailRepository.save(orderDetail);
         }
     }
