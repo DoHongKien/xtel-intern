@@ -7,11 +7,13 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Slf4j
 @Service
+@Transactional
 @RequiredArgsConstructor
 public class StudentJdbcTemplateServiceImpl implements StudentService {
 
@@ -72,8 +74,9 @@ public class StudentJdbcTemplateServiceImpl implements StudentService {
     }
 
     @Override
-    public void deleteStudent(Long studentId) {
+    public String deleteStudent(Long studentId) {
         String sql = "DELETE FROM student WHERE id = " + studentId;
-        jdbcTemplate.execute(sql);
+        int result = jdbcTemplate.update(sql);
+        return result == 1 ? "Deleted student successfully!":"Delete student failed!";
     }
 }

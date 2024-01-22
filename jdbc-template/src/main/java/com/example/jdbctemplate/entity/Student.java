@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Checks;
 import org.hibernate.annotations.Formula;
 
 import java.util.Date;
@@ -33,9 +34,9 @@ public class Student {
     private String lastName;
 
     @Formula("CONCAT(last_name, ' ', middle_name, ' ', first_name)")
-    @Transient
     private String fullName;
 
+    @Temporal(value = TemporalType.DATE)
     private Date dob;
 
     private String address;
