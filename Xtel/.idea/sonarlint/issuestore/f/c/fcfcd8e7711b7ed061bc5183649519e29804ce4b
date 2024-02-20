@@ -1,0 +1,17 @@
+
+o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(œ¢ü
+=
+java:S2189""Add an end condition to this loop.(˜ïˆÿÿÿÿÿ
+D
+java:S3416")Update this logger to use "Client.class".(“Ò¦“şÿÿÿÿ
+t
+java:S2142,"^Either re-interrupt this method or rethrow the "InterruptedException" that can be caught here.(ä ¹€
+@	java:S106%"+Replace this use of System.out by a logger.(ôÙ¹ğ
+a
+java:S3457+"KFormat specifiers or lambda should be used instead of string concatenation.(Ÿ¢·È
+f
+java:S3457-"KFormat specifiers or lambda should be used instead of string concatenation.(”¸óûÿÿÿÿ
+f
+java:S34575"KFormat specifiers or lambda should be used instead of string concatenation.(ÛèĞíşÿÿÿÿ
+E
+java:S2093"*Change this "try" to a try-with-resources.(¡»¢üùÿÿÿÿ

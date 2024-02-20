@@ -1,0 +1,22 @@
+
+x
+java:S1192A"bDefine a constant instead of duplicating this literal "The IOException error can occur: " 3 times.(Ÿ¢·È
+P
+java:S1141"5Extract this nested try block into a separate method.(¡»¢üùÿÿÿÿ
+o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(œ¢ü
+`
+java:S2259;"JA "NullPointerException" could be thrown; "outputStream" is nullable here.(¼ïé¥
+=
+java:S2189""Add an end condition to this loop.(˜ïˆÿÿÿÿÿ
+h
+java:S3776"RRefactor this method to reduce its Cognitive Complexity from 16 to the 15 allowed.(Çµí‘
+E	java:S106/"+Replace this use of System.out by a logger.(øºÑûúÿÿÿÿ
+E	java:S106<"+Replace this use of System.out by a logger.(Òô ­ûÿÿÿÿ
+a
+java:S3457A"KFormat specifiers or lambda should be used instead of string concatenation.(Ÿ¢·È
+a
+java:S3457E"KFormat specifiers or lambda should be used instead of string concatenation.(Ÿ¢·È
+a
+java:S3457M"KFormat specifiers or lambda should be used instead of string concatenation.(Ÿ¢·È
+E
+java:S2093"*Change this "try" to a try-with-resources.(¡»¢üùÿÿÿÿ

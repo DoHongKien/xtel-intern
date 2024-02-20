@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
@@ -24,10 +26,12 @@ public class Student {
 
     private Integer age;
 
-    public Student(String name, String gender, String address, Integer age) {
+    private LocalDateTime birthday;
+    public Student(String name, String gender, String address, Integer age, LocalDateTime birthday) {
         this.name = name;
         this.gender = gender;
         this.address = address;
         this.age = age;
+        this.birthday = birthday;
     }
 }

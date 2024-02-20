@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;
+import java.sql.Date;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
@@ -24,6 +26,7 @@ public class StudentService {
 
     @Async
     public CompletableFuture<List<Student>> saveStudents(MultipartFile file) throws Exception {
+        System.out.println("save students");
         long start = System.currentTimeMillis();
         List<Student> students = parseCsv(file);
         logger.info("saving list of students of size {} - thread name: {}", students.size(), Thread.currentThread().getName());
@@ -55,10 +58,11 @@ public class StudentService {
                 while ((line = br.readLine()) != null) {
                     String[] data = line.split(",");
                     Student student = new Student(
+                            data[0],
                             data[1],
                             data[2],
-                            data[3],
-                            Integer.parseInt(data[4]));
+                            Integer.parseInt(data[3]),
+                            LocalDateTime.parse(data[4]));
                     students.add(student);
                 }
                 return students;

@@ -1,0 +1,18 @@
+
+`	java:S1120"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ
+t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(¤ÁÍşÿÿÿÿ
+E	java:S106"+Replace this use of System.out by a logger.(¤Í¦¡ûÿÿÿÿ
+t
+java:S2142"^Either re-interrupt this method or rethrow the "InterruptedException" that can be caught here.(ä ¹€
+^
+java:S2276"CReplace the call to "Thread.sleep(...)" with a call to "wait(...)".(»ãßºøÿÿÿÿ
+F
+java:S2446""0"notify" may not wake up the appropriate thread.(ğÁ•‹
+t
+java:S2142/"^Either re-interrupt this method or rethrow the "InterruptedException" that can be caught here.(”ı¾
+E	java:S106)"+Replace this use of System.out by a logger.(íØÎ›ûÿÿÿÿ
+@	java:S1063"+Replace this use of System.out by a logger.(Û”Ì•
+t
+java:S2142?"^Either re-interrupt this method or rethrow the "InterruptedException" that can be caught here.(ä ¹€
+E
+java:S1068"*Remove this unused "LOGGER" private field.(ıò©øÿÿÿÿ

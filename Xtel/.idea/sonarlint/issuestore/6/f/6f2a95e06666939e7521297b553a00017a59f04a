@@ -1,0 +1,7 @@
+
+o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(æÏµô
+b
+java:S2095&"LUse try-with-resources or close this "BufferedWriter" in a "finally" clause.(Ş‡Ñ
+—
+java:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(È×·°
+E	java:S106'"+Replace this use of System.out by a logger.(ÉŒÎêøÿÿÿÿ

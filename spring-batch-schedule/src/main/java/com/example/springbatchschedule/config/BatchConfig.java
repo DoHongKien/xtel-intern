@@ -64,7 +64,7 @@ public class BatchConfig {
                 .linesToSkip(1)
                 .delimited()
                 //Thiết lập tên của các trường trong bảng
-                .names(new String[]{"name", "age", "gender", "address"})
+                .names(new String[]{"name", "age", "gender", "address", "birthday"})
                 .fieldSetMapper(new BeanWrapperFieldSetMapper<>(){{
                     setTargetType(Student.class);
                 }})

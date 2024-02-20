@@ -45,7 +45,7 @@ public class StudentController {
     @GetMapping(value = "/get-student")
     public CompletableFuture<List<Student>> getStudent(@RequestParam("id") List<Integer> ids) {
         List<CompletableFuture<Student>> completableFuture = new ArrayList<>();
-        for(Integer id: ids) {
+        for (Integer id : ids) {
             CompletableFuture<Student> student = studentService.findStudent(id);
             completableFuture.add(student);
         }
@@ -55,7 +55,7 @@ public class StudentController {
 
         // Chuyển từ CompletableFuture<Void> -> CompletableFuture<List<Student>> và trả về kết quả
         return allOf.thenApply(v ->
-            completableFuture.stream().map(CompletableFuture::join).collect(Collectors.toList())
+                completableFuture.stream().map(CompletableFuture::join).collect(Collectors.toList())
         );
     }
 }

@@ -1,0 +1,25 @@
+
+[	java:S112."FDefine and throw a dedicated exception instead of using a generic one.(é¾ŞÄ
+n	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Ş¬Ş;
+U
+java:S1854,":Remove this useless assignment to local variable "handle".(ñ –šüÿÿÿÿ
+W
+java:S1854)"ARemove this useless assignment to local variable "exceptionally".(øøÑü
+Z
+java:S1854&"?Remove this useless assignment to local variable "thenCompose".(º˜‰úÿÿÿÿ
+V
+java:S1854#";Remove this useless assignment to local variable "thenRun".(ğ§Ø¼üÿÿÿÿ
+—
+java:S1130"€Remove the declaration of thrown exception 'java.util.concurrent.ExecutionException', as it cannot be thrown from method's body.(­Ëê
+
+java:S1130"wRemove the declaration of thrown exception 'java.lang.InterruptedException', as it cannot be thrown from method's body.(­Ëê
+E	java:S106 "+Replace this use of System.out by a logger.(Òú¸ÿÿÿÿÿ
+E	java:S106#"+Replace this use of System.out by a logger.(ğ§Ø¼üÿÿÿÿ
+G
+java:S1481#",Remove this unused "thenRun" local variable.(ğ§Ø¼üÿÿÿÿ
+K
+java:S1481&"0Remove this unused "thenCompose" local variable.(º˜‰úÿÿÿÿ
+H
+java:S1481)"2Remove this unused "exceptionally" local variable.(øøÑü
+F
+java:S1481,"+Remove this unused "handle" local variable.(ñ –šüÿÿÿÿ

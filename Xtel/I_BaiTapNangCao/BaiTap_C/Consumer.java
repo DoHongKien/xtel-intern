@@ -6,7 +6,7 @@ import java.util.logging.Logger;
 public class Consumer implements Runnable {
 
     // Tạo Logger ghi thông tin log
-    private final Logger logger = Logger.getLogger(G_MultiThread.BlockingQueue.Consumer.class.getName());
+    private final Logger logger = Logger.getLogger(Consumer.class.getName());
 
     // Tạo BlockingQueue thực hiện lấy phần tử ra khỏi queue
     private final BlockingQueue<Message> blockingQueue;

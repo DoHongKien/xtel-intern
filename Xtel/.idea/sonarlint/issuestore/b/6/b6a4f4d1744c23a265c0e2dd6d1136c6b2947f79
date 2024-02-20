@@ -1,0 +1,33 @@
+
+o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(˜Šˆ¤
+R
+java:S1854"<Remove this useless assignment to local variable "students".(÷³ä
+C
+java:S1481"-Remove this unused "students" local variable.(÷³ä
+Q	java:S125"<This block of commented-out lines of code should be removed.(‰ðëÔ
+E	java:S106$"+Replace this use of System.out by a logger.(¹Ä›³ýÿÿÿÿ
+E	java:S106."+Replace this use of System.out by a logger.(¢¼ûôþÿÿÿÿ
+E	java:S1069"+Replace this use of System.out by a logger.(¼Óüåøÿÿÿÿ
+E	java:S106C"+Replace this use of System.out by a logger.(Öâðüÿÿÿÿ
+@	java:S106N"+Replace this use of System.out by a logger.(ž„‰¸
+E	java:S106W"+Replace this use of System.out by a logger.(·ë³Øùÿÿÿÿ
+E	java:S106a"+Replace this use of System.out by a logger.(·ë³Øùÿÿÿÿ
+\
+java:S3457l"AFormat specifiers should be used instead of string concatenation.(Ï†¶Óüÿÿÿÿ
+E	java:S106l"+Replace this use of System.out by a logger.(Ï†¶Óüÿÿÿÿ
+Q
+java:S1144"6Remove this unused private "listNameOfStudent" method.(Íƒ§Âýÿÿÿÿ
+O
+java:S1144("4Remove this unused private "sortStudentName" method.(¥»¹Åøÿÿÿÿ
+T
+java:S11442"9Remove this unused private "listCountryOfStudent" method.(¸¹ªÐÿÿÿÿÿ
+d
+java:S1144="IRemove this unused private "listAgeOfStudentGreaterThanOrEqual20" method.(Îøõ·üÿÿÿÿ
+T
+java:S1144G"9Remove this unused private "listSubjectOfStudent" method.(Ë¬¨ìüÿÿÿÿ
+R
+java:S1144R"=Remove this unused private "groupTheStudentByCountry" method.(¥Ú§<
+P
+java:S1144\":Remove this unused private "countStudentByCountry" method.(îÂÁ
+O
+java:S1144f"9Remove this unused private "averageAgeOfStudents" method.(Þ¿çÇ

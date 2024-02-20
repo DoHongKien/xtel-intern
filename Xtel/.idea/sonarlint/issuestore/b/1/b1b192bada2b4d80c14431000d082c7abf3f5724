@@ -1,0 +1,54 @@
+
+o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Ò°§×
+X
+java:S1854,"BRemove this useless assignment to local variable "dateTimeFormat".(íæ¥„
+S
+java:S1854)">Remove this useless assignment to local variable "dateFormat".(™Ä’i
+X
+java:S1854&"=Remove this useless assignment to local variable "dayOfYear".(È‘Øãøÿÿÿÿ
+T
+java:S1854%">Remove this useless assignment to local variable "dayOfMonth".(µ†®º
+X
+java:S1854$"=Remove this useless assignment to local variable "dayOfWeek".(‹”ğÜüÿÿÿÿ
+Q
+java:S1854";Remove this useless assignment to local variable "isEqual".(”îäã
+V
+java:S1854";Remove this useless assignment to local variable "isAfter".(ë½îùÿÿÿÿ
+R
+java:S1854"<Remove this useless assignment to local variable "isBefore".(¡äƒ
+Y
+java:S1854">Remove this useless assignment to local variable "minusYears".(–€ºÜûÿÿÿÿ
+X
+java:S1854"=Remove this useless assignment to local variable "plusYears".(¹×ğ¹ıÿÿÿÿ
+Y
+java:S1854">Remove this useless assignment to local variable "minusMonth".(–¤‡ºøÿÿÿÿ
+X
+java:S1854"=Remove this useless assignment to local variable "plusMonth".( âı÷øÿÿÿÿ
+S
+java:S1854"=Remove this useless assignment to local variable "minusDays".(Ôâ‰ÿ
+D
+java:S1481".Remove this unused "minusDays" local variable.(Ôâ‰ÿ
+I
+java:S1481".Remove this unused "plusMonth" local variable.( âı÷øÿÿÿÿ
+J
+java:S1481"/Remove this unused "minusMonth" local variable.(–¤‡ºøÿÿÿÿ
+I
+java:S1481".Remove this unused "plusYears" local variable.(¹×ğ¹ıÿÿÿÿ
+J
+java:S1481"/Remove this unused "minusYears" local variable.(–€ºÜûÿÿÿÿ
+C
+java:S1481"-Remove this unused "isBefore" local variable.(¡äƒ
+G
+java:S1481",Remove this unused "isAfter" local variable.(ë½îùÿÿÿÿ
+B
+java:S1481",Remove this unused "isEqual" local variable.(”îäã
+I
+java:S1481$".Remove this unused "dayOfWeek" local variable.(‹”ğÜüÿÿÿÿ
+E
+java:S1481%"/Remove this unused "dayOfMonth" local variable.(µ†®º
+I
+java:S1481&".Remove this unused "dayOfYear" local variable.(È‘Øãøÿÿÿÿ
+D
+java:S1481)"/Remove this unused "dateFormat" local variable.(™Ä’i
+I
+java:S1481,"3Remove this unused "dateTimeFormat" local variable.(íæ¥„

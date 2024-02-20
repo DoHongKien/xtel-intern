@@ -7,6 +7,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
+
 @RestController
 @RequiredArgsConstructor
 public class StudentController {
@@ -22,6 +24,12 @@ public class StudentController {
     @GetMapping("/get/{id}")
     public ResponseEntity<?> findStudentById(@PathVariable("id") Integer id) {
         return ResponseEntity.ok(studentService.findStudentById(id));
+    }
+
+    @GetMapping("/exportExcel")
+    public ResponseEntity<?> exportExcel() throws IOException {
+        studentService.exportExcel();
+        return ResponseEntity.ok("");
     }
 
     @PostMapping("/save")

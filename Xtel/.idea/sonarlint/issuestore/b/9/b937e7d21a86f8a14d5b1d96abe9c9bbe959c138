@@ -1,0 +1,21 @@
+
+`	java:S1129"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ
+o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ÕáÌ¶
+g
+java:S20951"LUse try-with-resources or close this "BufferedReader" in a "finally" clause.(¿ÃÊíøÿÿÿÿ
+b
+java:S2095B"LUse try-with-resources or close this "BufferedReader" in a "finally" clause.(û÷°»
+b
+java:S2095I"LUse try-with-resources or close this "BufferedWriter" in a "finally" clause.(Ïí¨
+U
+java:S1118":Add a private constructor to hide the implicit public one.( öÆ´ÿÿÿÿÿ
+@	java:S106"+Replace this use of System.out by a logger.(£ÑáÃ
+?	java:S106"+Replace this use of System.out by a logger.(ÇùªV
+?	java:S106$"+Replace this use of System.out by a logger.(ÇùªV
+<
+java:S3457*"!Single quote "'" must be escaped.(ƒÏÓ’şÿÿÿÿ
+@	java:S1067"+Replace this use of System.out by a logger.(±½Ö»
+@	java:S106Y"+Replace this use of System.out by a logger.(óüñ
+E	java:S106Z"+Replace this use of System.out by a logger.(÷„Îúÿÿÿÿ
+E	java:S106["+Replace this use of System.out by a logger.(¥óŠÀıÿÿÿÿ
+E	java:S106\"+Replace this use of System.out by a logger.(ô¼Óşÿÿÿÿ
