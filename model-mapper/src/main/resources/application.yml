@@ -9,3 +9,5 @@ spring:
     open-in-view: false
     hibernate:
       ddl-auto: update
+logging:
+  config: logback.xml
